@@ -3,9 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
+  --input-background: #ffffff;
+  --input-text: #171717;
+  --table-header: #f3f4f6;
+  --table-border: #e5e7eb;
+  --hover-bg: #f9fafb;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -16,11 +18,41 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --input-background: #1a1a1a;
+    --input-text: #ededed;
+    --table-header: #1f1f1f;
+    --table-border: #2d2d2d;
+    --hover-bg: #262626;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+input, select {
+  background-color: var(--input-background);
+  color: var(--input-text);
+  border-color: var(--table-border);
+}
+
+table {
+  background-color: var(--input-background);
+  border-color: var(--table-border);
+}
+
+th {
+  background-color: var(--table-header);
+  color: var(--input-text);
+}
+
+tr:hover {
+  background-color: var(--hover-bg);
+}
+
+pre {
+  background-color: var(--input-background);
+  color: var(--input-text);
+  border-color: var(--table-border);
 }
