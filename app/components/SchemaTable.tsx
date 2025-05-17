@@ -6,7 +6,6 @@ import {
     getCoreRowModel,
     flexRender,
     createColumnHelper,
-    type ColumnDef,
 } from '@tanstack/react-table';
 
 const DATA_TYPES = [
@@ -32,7 +31,7 @@ export default function SchemaTable() {
     const [hclOutput, setHclOutput] = useState("");
 
     const columnHelper = createColumnHelper<SchemaRow>();
-    const columns = useMemo<ColumnDef<SchemaRow, any>[]>(() => [
+    const columns = useMemo(() => [
         columnHelper.accessor('name', {
             header: 'Field Name',
             cell: ({ row, getValue }) => (
@@ -74,7 +73,7 @@ export default function SchemaTable() {
             cell: ({ row, getValue }) => (
                 <input
                     type="checkbox"
-                    checked={getValue() || false}
+                    checked={getValue()}
                     onChange={e => {
                         const checked = e.target.checked;
                         setRows(prev => prev.map((r, index) =>
@@ -90,7 +89,7 @@ export default function SchemaTable() {
             cell: ({ row, getValue }) => (
                 <input
                     type="checkbox"
-                    checked={getValue() || false}
+                    checked={getValue()}
                     onChange={e => {
                         const checked = e.target.checked;
                         setRows(prev => prev.map((r, index) =>
@@ -106,7 +105,7 @@ export default function SchemaTable() {
             cell: ({ row, getValue }) => (
                 <input
                     type="checkbox"
-                    checked={getValue() || false}
+                    checked={getValue()}
                     onChange={e => {
                         const checked = e.target.checked;
                         setRows(prev => prev.map((r, index) =>
@@ -135,7 +134,7 @@ export default function SchemaTable() {
         }),
         columnHelper.display({
             id: 'actions',
-            cell: ({ row }: { row: any }) => (
+            cell: ({ row }) => (
                 <button
                     onClick={() => handleRemoveRow(row.index)}
                     className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
@@ -145,7 +144,7 @@ export default function SchemaTable() {
                 </button>
             ),
         }),
-    ],[]);
+    ], [columnHelper, handleRemoveRow, rows.length]);
 
     const table = useReactTable({
         data: rows,
