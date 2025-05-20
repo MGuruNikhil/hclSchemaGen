@@ -23,12 +23,6 @@ type SchemaTableProps = {
   dataTypes?: string[]
 }
 
-function FieldStatus({ valid, message, show }: { valid: boolean; message: string; show: boolean }) {
-  if (!show) return null
-
-  return <div className={`text-sm mt-1 ${valid ? "text-green-500" : "text-red-500"}`}>{message}</div>
-}
-
 export default function SchemaTable({
   schemas = ["public", "application", "user"],
   dataTypes = [
@@ -57,7 +51,6 @@ export default function SchemaTable({
   }
 
   const [showValidation, setShowValidation] = useState(false)
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [schema, setSchema] = useState(schemas[0])
   const [modelName, setModelName] = useState("")
   const [rows, setRows] = useState<SchemaRow[]>([
