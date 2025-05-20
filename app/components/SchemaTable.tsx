@@ -241,11 +241,9 @@ export default function SchemaTable({
         }
       })
 
-      setFieldErrors(errors)
       return
     }
 
-    setFieldErrors({})
 
     let hcl = `schema "${schema}" {\n  table "${modelName.trim()}" {\n`
 
